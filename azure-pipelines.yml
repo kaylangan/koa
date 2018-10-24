@@ -25,12 +25,11 @@ steps:
     versionSpec: $(NODE_VERSION)
   displayName: 'Install Node.js'
 
-#- script: |
-#    npm install
-#    npm prune
-#    [ ! -f wrk/bin/wrk ] && rm -rf wrk && git clone https://github.com/wg/wrk.git && make -C wrk && mkdir wrk/bin && mv wrk/wrk wrk/bin || true
-#    export PATH=$PATH:$PWD/wrk/bin/
-#  displayName: "Before script"
+- script: |
+    npm install
+    [ ! -f wrk/bin/wrk ] && rm -rf wrk && git clone https://github.com/wg/wrk.git && make -C wrk && mkdir wrk/bin && mv wrk/wrk wrk/bin || true
+    export PATH=$PATH:$PWD/wrk/bin/
+  displayName: "Before script"
 
 - script: |    
     npm run lint
