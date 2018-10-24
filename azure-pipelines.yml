@@ -5,16 +5,19 @@
 
 pool:
   vmImage: 'Ubuntu 16.04'
+  name: 'Linux'
 strategy:
   matrix:
     Node7:
       NODE_VERSION: '7.x'
     Node8:
       NODE_VERSION: '8.x'
-    Node9:
-      NODE_VERSION: '9.x'
-    Node10:
-      NODE_VERSION: '10.x'            
+#    Node9:
+#      NODE_VERSION: '9.x'
+#    Node10:
+#      NODE_VERSION: '10.x'           
+#    Node11:
+#      NODE_VERSION: '11.x'         
 
 steps:
 - task: NodeTool@0
@@ -29,7 +32,7 @@ steps:
   displayName: 'Before script'
 
 - script: |
-    cd $PATH:$PWD/wrk/bin/
+    cd $PWD/wrk/bin/
     npm run lint
     npm run test-cov
     npm run bench
