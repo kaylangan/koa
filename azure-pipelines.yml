@@ -48,4 +48,4 @@ steps:
     #buildPlatform: # Optional
     #buildConfiguration: # Optional
     #publishRunAttachments: true # Optional
-  diplayName: 'Publish tests'
+  displayName: 'Publish tests'
