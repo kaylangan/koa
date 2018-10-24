@@ -27,6 +27,11 @@ steps:
 
 - script: |
     npm install
+    npm prune
+    [ ! -f wrk/bin/wrk ] && rm -rf wrk && git clone https://github.com/wg/wrk.git && make -C wrk && mkdir wrk/bin && mv wrk/wrk wrk/bin || true
+    export PATH=$PATH:$PWD/wrk/bin/
+  displayName: "Before script"
+- script: |    
     npm run lint
     npm run test-cov
     npm run bench
