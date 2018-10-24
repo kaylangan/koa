@@ -32,7 +32,6 @@ steps:
 #  displayName: 'Before script'
 
 - script: |
-#    cd $PWD/wrk/bin/
     npm run lint
     npm run test-cov
     npm run bench
