@@ -12,24 +12,18 @@ strategy:
       NODE_VERSION: '7.x'
     Node8:
       NODE_VERSION: '8.x'
-#    Node9:
-#      NODE_VERSION: '9.x'
-#    Node10:
-#      NODE_VERSION: '10.x'           
-#    Node11:
-#      NODE_VERSION: '11.x'         
+    Node9:
+      NODE_VERSION: '9.x'
+    Node10:
+      NODE_VERSION: '10.x'           
+    Node11:
+      NODE_VERSION: '11.x'         
 
 steps:
 - task: NodeTool@0
   inputs:
     versionSpec: $(NODE_VERSION)
   displayName: 'Install Node.js'
-
-#- script: |
-#    npm prune
-#    [ ! -f wrk/bin/wrk ] && rm -rf wrk && git clone https://github.com/wg/wrk.git && make -C wrk && mkdir wrk/bin && mv wrk/wrk wrk/bin || true
-#    export PATH=$PATH:$PWD/wrk/bin/
-#  displayName: 'Before script'
 
 - script: |
     npm install
