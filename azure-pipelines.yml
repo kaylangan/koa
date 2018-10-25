@@ -12,12 +12,12 @@ strategy:
       NODE_VERSION: '7.x'
     Node8:
       NODE_VERSION: '8.x'
-    Node9:
-      NODE_VERSION: '9.x'
-    Node10:
-      NODE_VERSION: '10.x'           
-    Node11:
-      NODE_VERSION: '11.x'         
+    #Node9:
+      #NODE_VERSION: '9.x'
+    #Node10:
+      #NODE_VERSION: '10.x'           
+    #Node11:
+      #NODE_VERSION: '11.x'         
 
 steps:
 - task: NodeTool@0
@@ -30,10 +30,6 @@ steps:
     npm run lint
     npm run test-cov
   displayName: 'lint and test-cov'
-
-
-# move the executable to somewhere in your PATH, ex:
-sudo cp wrk /usr/local/bin
 
 - script: |
     git clone https://github.com/wg/wrk.git wrk
