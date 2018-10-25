@@ -36,7 +36,7 @@ steps:
   displayName: 'Clone wrk'
  
 - script:
-    make -C wrk
+    sudo make -C wrk
   displayName: 'Build wrk'
  
 - script: |
