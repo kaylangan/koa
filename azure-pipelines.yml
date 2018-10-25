@@ -29,24 +29,20 @@ steps:
     npm install
     npm run lint
     npm run test-cov
-  displayName: 'script'
+  displayName: 'lint and test-cov'
 
-- script:
-    git clone https://github.com/wg/wrk.git
-  displayName: 'Clone wrk'
- 
-- script:
-    sudo make -C wrk
-  displayName: 'Build wrk'
- 
+
+# move the executable to somewhere in your PATH, ex:
+sudo cp wrk /usr/local/bin
+
 - script: |
+    git clone https://github.com/wg/wrk.git wrk
+    cd wrk
+    sudo make
     mkdir wrk/bin && mv wrk/wrk wrk/bin
     export PATH=$PATH:$PWD/wrk/bin/
-  displayName: 'Move wrk'   
-    
-- script:
-    sudo npm run bench
-  displayName: 'Script'
+    npm run bench
+  displayName: 'Benchmarking'
 
 - script: |
     npm install codecov
