@@ -29,7 +29,7 @@ steps:
     npm install
     npm run lint
     npm run test-cov
-  dusplayName: 'script'
+  displayName: 'script'
 
 - script:
     git clone https://github.com/wg/wrk.git
