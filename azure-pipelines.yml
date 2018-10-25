@@ -12,12 +12,12 @@ strategy:
       NODE_VERSION: '7.x'
     Node8:
       NODE_VERSION: '8.x'
-    #Node9:
-      #NODE_VERSION: '9.x'
-    #Node10:
-      #NODE_VERSION: '10.x'           
-    #Node11:
-      #NODE_VERSION: '11.x'         
+    Node9:
+      NODE_VERSION: '9.x'
+    Node10:
+      NODE_VERSION: '10.x'           
+    Node11:
+      NODE_VERSION: '11.x'         
 
 steps:
 - task: NodeTool@0
@@ -25,19 +25,14 @@ steps:
     versionSpec: $(NODE_VERSION)
   displayName: 'Install Node.js'
 
-- script: |    
+- script: | 
+    git clone https://github.com/wg/wrk.git && sudo make -C wrk && mkdir -p wrk/bin && mv wrk/wrk wrk/bin
+    export PATH=$PATH:$PWD/wrk/bin/
     npm install
     npm run lint
     npm run test-cov
-  displayName: 'lint and test-cov'
-
-- script: |
-    git clone https://github.com/wg/wrk.git
-    sudo make -C wrk
-    mkdir -p wrk/bin && mv wrk/wrk wrk/bin
-    export PATH=$PATH:$PWD/wrk/bin/
     npm run bench
-  displayName: 'Benchmarking'
+  displayName: 'Script'
 
 - script: |
     npm install codecov
