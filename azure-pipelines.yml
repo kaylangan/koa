@@ -45,7 +45,7 @@ steps:
   displayName: 'Move wrk'   
     
 - script:
-    npm run bench
+    sudo npm run bench
   displayName: 'Script'
 
 - script: |
