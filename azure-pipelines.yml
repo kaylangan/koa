@@ -28,6 +28,9 @@ steps:
 - script: | 
     git clone https://github.com/wg/wrk.git && sudo make -C wrk && mkdir -p wrk/bin && mv wrk/wrk wrk/bin
     export PATH=$PATH:$PWD/wrk/bin/
+  displayName: 'Clone and build wrk'
+
+- script: | 
     npm install
     npm run lint
     npm run test-cov
