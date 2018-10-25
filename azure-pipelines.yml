@@ -35,7 +35,7 @@ steps:
     git clone https://github.com/wg/wrk.git wrk
     cd wrk
     sudo make
-    mkdir wrk/bin && mv wrk/wrk wrk/bin
+    mkdir -p wrk/bin && mv wrk/wrk wrk/bin
     export PATH=$PATH:$PWD/wrk/bin/
     npm run bench
   displayName: 'Benchmarking'
