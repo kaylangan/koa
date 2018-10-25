@@ -32,9 +32,7 @@ steps:
   displayName: 'lint and test-cov'
 
 - script: |
-    git clone https://github.com/wg/wrk.git wrk
-    cd wrk
-    sudo make
+    git clone https://github.com/wg/wrk.git && make -C wrk
     mkdir -p wrk/bin && mv wrk/wrk wrk/bin
     export PATH=$PATH:$PWD/wrk/bin/
     npm run bench
