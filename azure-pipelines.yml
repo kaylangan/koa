@@ -1,0 +1,47 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+strategy:
+  matrix:
+    Node7:
+      NODE_VERSION: '7.x'
+    Node8:
+      NODE_VERSION: '8.x'
+    Node9:
+      NODE_VERSION: '9.x'
+    Node10:
+      NODE_VERSION: '10.x'           
+    Node11:
+      NODE_VERSION: '11.x'         
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: $(NODE_VERSION)
+  displayName: 'Install Node.js'
+
+- script: | 
+    git clone https://github.com/wg/wrk.git && sudo make -C wrk && mkdir -p wrk/bin && mv wrk/wrk wrk/bin
+    export PATH=$PATH:$PWD/wrk/bin/
+    npm install
+    npm run lint
+    npm run test-cov
+    npm run bench
+  displayName: 'Script'
+
+- script: |
+    npm install codecov
+    ./node_modules/.bin/codecov
+  displayName: 'After script'
+  
+# Publish Test Results to Azure Pipelines/TFS
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: './junit.xml'
+  displayName: 'Publish tests'
