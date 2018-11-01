@@ -33,7 +33,7 @@ steps:
 - script: | 
     npm install
     npm run lint
-    set JEST_JUNIT_OUTPUT=test-cov-junit.xml&& npm run test-cov
+    npm run test-cov
     npm run bench
   displayName: 'Script'
 
