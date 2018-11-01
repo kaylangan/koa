@@ -33,7 +33,7 @@ steps:
 - script: | 
     npm install
     npm run lint
-    npm run test-cov
+    set JEST_JUNIT_OUTPUT=test-cov-junit.xml&& npm run test-cov
     npm run bench
   displayName: 'Script'
 
@@ -44,13 +44,7 @@ steps:
   
 # Publish Test Results to Azure Pipelines/TFS
 - task: PublishTestResults@2
-  #inputs:
-    #testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit
-    #testResultsFiles: '**/TEST-*.xml' 
-    #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
-    #mergeTestResults: false # Optional
-    #testRunTitle: # Optional
-    #buildPlatform: # Optional
-    #buildConfiguration: # Optional
-    #publishRunAttachments: true # Optional
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: 'test-*.xml'
   displayName: 'Publish tests'
