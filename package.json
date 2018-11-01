@@ -54,6 +54,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^2.1.1",
     "jest": "^20.0.0",
+    "jest-junit": "^5.2.0",
     "supertest": "^3.1.0"
   },
   "engines": {
@@ -70,6 +71,10 @@
       "text-summary",
       "lcov"
     ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ]
     "bail": true,
     "testEnvironment": "node"
   }
