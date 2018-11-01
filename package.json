@@ -74,7 +74,7 @@
     "reporters": [
       "default",
       "jest-junit"
-    ]
+    ],
     "bail": true,
     "testEnvironment": "node"
   }
